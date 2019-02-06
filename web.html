@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button5 {background-color: #555555;} /* Black */
+</style>
+<script>
+	let domain = "http://localhost:8080" ;
+	function turnOnOff(on){
+		if(on){
+			document.getElementById('myImage').src='pic_bulbon.gif'
+			const Http = new XMLHttpRequest();
+			const url= domain + "/led?status=on" ;
+			Http.open("GET", url);
+			Http.send();
+			Http.onreadystatechange=(e)=>{
+				console.log("ON Bulb")
+			}		
+		}
+		else{
+			document.getElementById('myImage').src='pic_bulboff.gif'
+			const Http = new XMLHttpRequest();
+			const url= domain + "/led?status=off" ;
+			Http.open("GET", url);
+			Http.send();
+			Http.onreadystatechange=(e)=>{
+				console.log("Off Bulb")
+			}		
+		}
+	}
+</script>
+</head>
+<body>
+
+<h2>Turn On/Off Led </h2>
+
+
+<img id="myImage" src="pic_bulboff.gif" style="width:100px">
+
+
+<button class="button" onclick="turnOnOff(true);">ON</button>
+<button class="button button2"  onclick="turnOnOff(false);">OFF</button>
+
+</body>
+</html>
+
